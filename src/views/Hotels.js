@@ -5,10 +5,10 @@ import { toast } from 'react-hot-toast';
 import local_url from '../lib/constants'
 
 const Hotels = () => {
-  const [formvalue, setValue] = useState('');
+  const [formvalue, setValue] = useState({location:'', checkin:'', checkout:''});
   const handleChange=(event)=>{
     const {name, value}= event.target;
-    setValue(event.target.value);
+    setValue({...formvalue, [name]:value});
     console.log(formvalue)
   }
   const handleSubmit=(event)=>{
@@ -44,7 +44,9 @@ async function findLocation(){
       "Access-Control-Allow-Origin":"*",
     },
     body:JSON.stringify({
-      location: formvalue
+      location: formvalue.location,
+      checkin: formvalue.checkin,
+      checkout: formvalue.checkout,
     })
   }).then(res => { 
     return res.json()
@@ -105,16 +107,14 @@ async function findLocation(){
   <label className="label">
     <span className="label-text">Where do you want to go?</span>
   </label>
-  <input type="text" placeholder="Where to?" className="location input input-bordered w-full max-w-xs text-black" name="location" value={formvalue} onChange={handleChange}/>
-  <button className='btn btn-secondary text-primary mt-2'>search</button>
-</form>
+  <input type="text" placeholder="Where to?" className="location input input-bordered w-full max-w-xs text-black" name="location" value={formvalue.location} onChange={handleChange}/>
 <div className='flex-container'>
 <div className="form-control w-full max-w-xs">
   {/* <label className="label">
     <span className="label-text">What is your name?</span>
     <span className="label-text-alt">Top Right label</span>
   </label> */}
-  <input type="text" placeholder="Check-in" className="start-date input input-bordered w-full max-w-xs text-black" />
+  <input type="text" placeholder="Check-in" className="start-date input input-bordered w-full max-w-xs text-black" name = 'checkin' value = {formvalue.checkin} onChange={handleChange} />
   <label className="label">
     <span className="label-text-alt">Check-in Date</span>
     {/* <span className="label-text-alt">Bottom Right label</span> */}
@@ -125,7 +125,7 @@ async function findLocation(){
     <span className="label-text">What is your name?</span>
     <span className="label-text-alt">Top Right label</span>
   </label> */}
-  <input type="text" placeholder="Check-out" className="end-date input input-bordered w-full max-w-xs text-black" />
+  <input type="text" placeholder="Check-out" className="end-date input input-bordered w-full max-w-xs text-black" name='checkout' value = {formvalue.checkout} onChange= {handleChange} />
   <label className="label">
     {/* <span className="label-text-alt">Bottom Left label</span> */}
     <span className="label-text-alt">Check-out Date</span>
@@ -135,6 +135,7 @@ async function findLocation(){
     <div className="card-actions justify-end">
       <button className="btn btn-secondary">Search</button>
     </div>
+    </form>
   </div>
 </div>
 
