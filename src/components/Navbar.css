@@ -1,0 +1,8 @@
+.calendar{
+    color: black;
+}  
+.navbar{
+    overflow: hidden;
+    position: relative;
+    background-color: transparent!important;
+}

@@ -1,0 +1,38 @@
+@media screen and (width:612px) {
+    .flex-container{
+        flex-direction: column!important;
+    }
+}
+.container{
+    width: 100vw;
+}
+.img-container{
+    padding: 50px;
+    /* position: relative; */
+}
+.hotels-text{
+    position: absolute;
+    font-size: 70pt;
+    top: 75%;
+    left: 60%;
+    color: white;
+}
+.hotel-img{
+    object-fit: cover;
+    width: 100vw;
+    height: 80vh;
+    border-radius: 2rem;
+    image-resolution: from-image;
+    position: relative;
+}
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.hotel-card{
+    margin: 40px auto;
+    width: 50%;
+}
+.location-input{
+}
