@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import hotel from '../images/hotel5.jpeg'
+import React, {useState, useEffect} from 'react';
+import hotel from '../images/hotel5.jpeg';
 import './Hotels.css';
 import { toast } from 'react-hot-toast';
-import local_url from '../lib/constants'
 
 const Hotels = () => {
   const [formvalue, setValue] = useState({location:'', checkin:'', checkout:''});
@@ -133,13 +132,13 @@ async function findLocation(){
 </div>
 </div>
     <div className="card-actions justify-end">
-      <button className="btn btn-secondary">Search</button>
+      <button className="btn btn-secondary text-primary">Search</button>
     </div>
     </form>
   </div>
 </div>
 
-      <h1>this will be the hotels page</h1>
+      <h1>Don't know the dates yet? That's okay, you can always change them later!</h1>
         {/* <h1>{JSON.stringify(data?.data?.data[0])}</h1> */}
     </div>
   )
