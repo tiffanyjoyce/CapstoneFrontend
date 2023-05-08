@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import hotel from '../images/hotel5.jpeg';
 import './Hotels.css';
 import { toast } from 'react-hot-toast';
+import { data } from 'autoprefixer';
 
 const Hotels = () => {
   const [formvalue, setValue] = useState({location:'', checkin:'', checkout:''});
@@ -16,24 +17,6 @@ const Hotels = () => {
     setValue('')
     console.log(formvalue);
   }
-    // const locationform = document.querySelector('.form');
-
-    // locationform.addEventListener('submit', event => {
-    //   event.preventDefault();
-
-    //   const formData = new FormData(locationform);
-    //   const data = Object.fromEntries(formData)
-
-    //   fetch('/location/api', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(data)
-    //   }).then(response=> response.json())
-    //   .then(data=> console.log(data))
-    //   .catch(error => console.log(error))
-    // });
 
 async function findLocation(){
   fetch("http://127.0.0.1:5000/api/location", {
@@ -49,9 +32,10 @@ async function findLocation(){
     })
   }).then(res => { 
     return res.json()
-  }).then(data => console.log(data))
+  }).then(data => console.log(data?.data?.data))
   .catch(error => console.log("ERROR"))
 }
+let hotels = data?.data?.data
   // const FindLocationId = async () => {
   //   const location = {
   //     location: value,
@@ -138,7 +122,7 @@ async function findLocation(){
   </div>
 </div>
 
-      <h1>Don't know the dates yet? That's okay, you can always change them later!</h1>
+      <h1 className='reminder'>Don't know the dates yet? That's okay, you can always change them later!</h1>
         {/* <h1>{JSON.stringify(data?.data?.data[0])}</h1> */}
     </div>
   )

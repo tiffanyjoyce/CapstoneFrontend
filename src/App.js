@@ -10,6 +10,7 @@ import Hotels from './views/Hotels';
 import Attractions from './views/Attractions';
 import Rentals from './views/Rentals';
 import Footer from './components/Footer';
+import ViewHotels from './views/ViewHotels';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='/random' exact element={<Random/>}/>
           <Route path='/rentals' exact element={<Rentals/>}/>
           <Route path='/attractions' exact element={<Attractions/>}/>
+          <Route path='/viewhotels/:hotels' exact element={<ViewHotels/>}/>
         </Routes>
         <Footer/>
       </Router>

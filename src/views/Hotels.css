@@ -34,5 +34,7 @@
     margin: 40px auto;
     width: 50%;
 }
-.location-input{
+.reminder{
+    text-align: center;
+    font-size: 13pt;
 }

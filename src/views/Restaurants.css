@@ -1,0 +1,36 @@
+.img-container{
+
+}
+.restaurant-img{
+    object-fit: cover;
+    width: 100vw;
+    height: 80vh;
+    border-radius: 2rem;
+    image-resolution: from-image;
+    position: relative;
+}
+.title{
+    position: absolute;
+    font-size: 60pt;
+    text-align: right;
+    color: white;
+    bottom: 5%;
+    left:50%;
+}
+.r-card{
+    margin: 0 auto;
+    width: 50%;
+}
+form{
+    justify-content: center;
+    margin: 0 auto;
+}
+.card-title{
+    text-align: center;
+    margin: 0 auto;
+}
+.message{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13pt;
+}
