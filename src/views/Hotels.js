@@ -14,7 +14,7 @@ const Hotels = () => {
   const handleSubmit=(event)=>{
     event.preventDefault();
     findLocation()
-    setValue('')
+    setValue({location:'', checkin:'', checkout:''})
     console.log(formvalue);
   }
 
@@ -35,7 +35,6 @@ async function findLocation(){
   }).then(data => console.log(data?.data?.data))
   .catch(error => console.log("ERROR"))
 }
-let hotels = data?.data?.data
   // const FindLocationId = async () => {
   //   const location = {
   //     location: value,
@@ -123,9 +122,17 @@ let hotels = data?.data?.data
 </div>
 
       <h1 className='reminder'>Don't know the dates yet? That's okay, you can always change them later!</h1>
-        {/* <h1>{JSON.stringify(data?.data?.data[0])}</h1> */}
+        
     </div>
   )
+}
+const showHotels = (data)=>{
+const hotelData = data?.data?.data
+const hotels = hotelData.map(hotel=> {
+  return (
+    <div key={hotel.title}></div>
+  )
+})
 }
 
 export default Hotels
