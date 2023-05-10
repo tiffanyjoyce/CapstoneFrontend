@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { data } from 'autoprefixer';
 
 const Hotels = () => {
+  const [hotels, setHotels] = useState([])
   const [formvalue, setValue] = useState({location:'', checkin:'', checkout:''});
   const handleChange=(event)=>{
     const {name, value}= event.target;
@@ -32,9 +33,14 @@ async function findLocation(){
     })
   }).then(res => { 
     return res.json()
-  }).then(data => console.log(data?.data?.data))
+  }).then(data => {console.log(data?.data?.data);
+  const allHotels = data?.data?.data
+  setHotels(allHotels)
+  })
+
   .catch(error => console.log("ERROR"))
 }
+useEffect(() => {console.log(hotels)},[hotels])
   // const FindLocationId = async () => {
   //   const location = {
   //     location: value,
@@ -120,19 +126,27 @@ async function findLocation(){
     </form>
   </div>
 </div>
-
-      <h1 className='reminder'>Don't know the dates yet? That's okay, you can always change them later!</h1>
-        
+        <div className='hotel-info'>
+          {hotels && hotels.map((hotel)=>{
+            return(
+              <div key = {hotel.id} className="hotel-cards card bg-base-100 shadow-xl">
+              <figure><img src={hotel?.cardPhotos?.[0].sizes?.urlTemplate.split('?')[0]+'?w=700&h=500&s=1'} /></figure>
+              <div className="card-body">
+                <h2 className="card-title">{hotel.title}</h2>
+                <p className='price'>{hotel.priceForDisplay}/night</p>
+                <p className='discount'>{hotel.accentedLabel != false && hotel.accentedLabel}</p>
+                <p className='stars'>{hotel?.bubbleRating?.rating} <i class="fa-sharp fa-solid fa-star"></i> ({hotel?.bubbleRating?.count})</p>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">View</button>
+                </div>
+              </div>
+            </div>
+            )
+          })}
+        </div>
     </div>
   )
 }
-const showHotels = (data)=>{
-const hotelData = data?.data?.data
-const hotels = hotelData.map(hotel=> {
-  return (
-    <div key={hotel.title}></div>
-  )
-})
-}
+
 
 export default Hotels

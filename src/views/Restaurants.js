@@ -3,6 +3,7 @@ import restaurant from "../images/restaurant.jpeg"
 import "./Restaurants.css"
 
 const Restaurants = () => {
+  const [restaurants, setRestaurants] = useState([])
     const [formvalue, setValue] = useState('')
     const handleChange=(event)=>{
       setValue(event.target.value);
@@ -26,7 +27,10 @@ const Restaurants = () => {
         })
       }).then(res => { 
         return res.json()
-      }).then(data => console.log(data?.data?.data))
+      }).then(data => {console.log(data?.data?.data);
+        const allRestaurants =data?.data?.data
+        setRestaurants(allRestaurants)
+      })
       .catch(error => console.log("ERROR"))
     }
 
@@ -50,8 +54,25 @@ const Restaurants = () => {
     </form>
   </div>
 </div>
-      <h1 className='message'>Want to search restaurants near your hotel/rental? Search from your calendar</h1>
-      {/* <h1>{JSON.stringify(data.data.data[0].averageRating)}</h1> */}
+      <div className='rests'>
+        {restaurants && restaurants.map((restaurant)=>{
+          return(
+            <div key = {restaurant.restaurantsId} className="rest-cards card w-96 bg-base-100 shadow-xl">
+  <figure><img className='rest-img'src={restaurant.heroImgUrl} alt="N/A" /></figure>
+  <div className="card-body">
+    <h2 className="card-title">{restaurant.name}</h2>
+    <p className='food-type'>{restaurant.establishmentTypeAndCuisineTags != [] && restaurant.establishmentTypeAndCuisineTags[0]}</p>
+    <p className='stars'>{restaurant.averageRating} <i class="fa-sharp fa-solid fa-star"></i> ({restaurant.userReviewCount})</p>
+    <p className='price'>{restaurant.priceTag}</p>
+    <p className='status'>{restaurant.currentOpenStatusText}</p>
+    <div className="card-actions justify-end">
+      <button className="btn btn-primary">View</button>
+    </div>
+  </div>
+</div>
+          )
+        })}
+      </div>
     </div>
   )
 }

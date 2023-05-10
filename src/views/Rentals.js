@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 const Rentals = () => {
+  const [rentals, setRentals] = useState([])
   const[formvalue, setValue] = useState({location:'', checkin: '', checkout:''})
   const handleChange= (event)=>{
     const {name, value}= event.target;
@@ -27,7 +28,10 @@ const Rentals = () => {
       })
     }).then(res => { 
       return res.json()
-    }).then(data => console.log(data?.data?.rentals?.rentals))
+    }).then(data => {console.log(data?.data?.rentals?.rentals);
+    const allRentals = data?.data?.rentals?.rentals
+    setRentals(allRentals)
+    })
     .catch(error => console.log("ERROR"))
   }
   return (
@@ -74,6 +78,22 @@ const Rentals = () => {
     </form>
     </div>
     </div>
+    <div>{rentals && rentals.map((rental)=>{
+      return(
+        <div key= {rental.id} className="card w-96 bg-base-100 shadow-xl">
+  <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+  <div className="card-body">
+    <h2 className="card-title">{rental.name}</h2>
+    <p>Starting at ${rental.rate.details[0].rate.amount}</p>
+    <p>{rental.rental.averageRatingNumber} <i class="fa-sharp fa-solid fa-star"></i> ({rental.rental.userReviewCount})</p>
+    <p>{rental.rental.roomCount} Bed | {rental.rental.bathCount} Bath | Sleeps {rental.rental.sleepCount}</p>
+    <div className="card-actions justify-end">
+      <button className="btn btn-primary">View</button>
+    </div>
+  </div>
+</div>
+      )
+    })}</div>
     </div>
   )
 }

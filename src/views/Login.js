@@ -1,65 +1,60 @@
 import React, {useState, useEffect} from 'react'
 import "./Login.css"
+import httpClient from '../httpClient';
 
 const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword]= useState('');
 
-  const [formvalue, setValue]=useState({username:'', password:''})
-  const handleChange =(event)=>{
-    const{name, value}= event.target;
-    setValue({...formvalue, [name]:value});
-    console.log(formvalue)
-  }
-  const handleSubmit=(event)=>{
-    event.PreventDefault();
-    signin()
-    setValue('')
-    console.log(formvalue);
-}
+  const loginUser= async ()=> {
+    console.log(username,password)
 
-  async function signin(){
-    fetch('http://127.0.0.1:5000/login', {
-      method: 'POST',
-      headers:{
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin":"*",
-    },
-    body:JSON.stringify({
-      username:formvalue.username,
-      password:formvalue.password,
+  try{
+    const resp = await httpClient.post('//127.0.0.1:5000/login', {
+      username,
+      password,
     })
-    }).then(res=>{
-      return res.json()
-    }).then(data=> console.log(data))
-    .catch(error=>console.log('ERROR'))
+    window.location.href='/';
+  }
+  catch (error){
+    if(error.response.status===401){
+      alert("Invalid credentials");
+    }
+  }
   }
 
   return (
     <div>
-      <div class="relative flex flex-col justify-center h-screen overflow-hidden">
-        <div class="s-card w-full p-6 m-auto bg-white rounded-md shadow-md ring-2 ring-primary lg:max-w-xl">
-            <h1 class="text-3xl font-semibold text-center text-primary">Login</h1>
-            <form class="form space-y-4" onSubmit={handleSubmit}>
-                <div>
-                    <label class="label">
-                        <span class="text-base label-text">Username</span>
-                    </label>
-                    <input type="text" placeholder="Username" class="w-full input input-bordered" name="username" value={formvalue.username} onChange={handleChange} />
-                </div>
-                <div>
-                    <label class="label">
-                        <span class="text-base label-text">Password</span>
-                    </label>
-                    <input type="password" placeholder="Enter Password"
-                        class="w-full input input-bordered" name='password' value={formvalue.password} onChange={handleChange}/>
-                </div>
-                <div>
-                    <button class="btn btn-block btn-primary">Login</button>
-                </div>
-                <span>Don't have an account?
-                    <a href="#" class="hover:text-primary hover:underline"> Sign Up</a></span>
-            </form>
-        </div>
+     <div className="hero min-h-screen bg-base-200">
+  <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="text-center lg:text-left">
+      <h1 className="text-5xl font-bold">Login</h1>
+      <p className="py-6">Hello there! Ready to pick up where you left off?</p>
     </div>
+    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div className="card-body">
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Username</span>
+          </label>
+          <input type="text" placeholder="Enter Username" className="input input-bordered" name='email' value={username} onChange={(e)=> setUsername(e.target.value)}/>
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Password</span>
+          </label>
+          <input type="text" placeholder="Enter Password" className="input input-bordered" name='password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
+          <label className="label">
+            <p>Don't have an account? <a href="/signup" className="label-text link link-hover hover:text-primary">Sign up</a></p>
+          </label>
+        </div>
+        <div className="form-control mt-6">
+          <button className="btn btn-primary">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   )
 }

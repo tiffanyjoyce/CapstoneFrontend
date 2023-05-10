@@ -18,7 +18,7 @@
     left:50%;
 }
 .r-card{
-    margin: 0 auto;
+    margin: 20px auto;
     width: 50%;
 }
 form{
@@ -33,4 +33,29 @@ form{
     text-align: center;
     margin-top: 20px;
     font-size: 13pt;
+}
+.food-type{
+    text-align: center;
+}
+.star{
+    text-align: center;
+}
+.price{
+    text-align: center;
+}
+.status{
+    text-align: center;
+}
+.rest-cards{
+    margin: 0 auto;
+    width: 45%;
+}
+.rests{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.rest-img{
+    width: 100%;
+    height:100%;
 }

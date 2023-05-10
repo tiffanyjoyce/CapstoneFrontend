@@ -1,72 +1,72 @@
 import React, {useState, UseState} from 'react'
 import "./SignUp.css"
+import httpClient from '../httpClient';
+import { json, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-    const [formvalue, setValue]= useState({username:"", email:'', password:''})
-    const handleChange =(event)=>{
-        const{name, value}= event.target;
-        setValue({...formvalue, [name]:value});
-        console.log(formvalue)
+  const [username, setUsername] = useState('');
+  const [password, setPassword]= useState('');
+  const [email, setEmail] = useState('');
+    const navigate = useNavigate()
+  const registerUser= async ()=> {
+    const res = await fetch('127.0.0.1:5000/signup',{
+        method:"POST",
+        body:JSON.stringify({
+            username:username,
+            email:email,
+            password:password,
+        }),
+        headers:{
+            "Content-Type":"application/json",
+            'Access-Control-Allow-Origin':'*',
+        }
+
+    })
+    const data = await res.json()
+    console.log(data)
+    if(data){
+        navigate('/')
     }
-    const handleSubmit=(event)=>{
-        event.preventDefault();
-        register()
-        setValue('')
-        console.log(formvalue);
-    }
-    
-    async function register(){
-        fetch("http://127.0.0.1:5000/signup",{
-            method: 'POST',
-            headers:{
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin":"*",
-            },
-            body:JSON.stringify({
-                username: formvalue.username,
-                email: formvalue.email,
-                password: formvalue.password,
-            })
-        }).then(res=>{
-            return res.json()
-        }).then(data => console.log(data))
-        .catch(error=> console.log('ERROR'))
-    }
-    
+  }
 
   return (
     <div className='container bg-img'>
-      <div class="relative flex flex-col justify-center h-screen overflow-hidden">
-        <div class="s-card w-full p-6 m-auto bg-white rounded-md shadow-md ring-2 ring-primary lg:max-w-xl">
-            <h1 class="text-3xl font-semibold text-center text-primary">Sign Up</h1>
-            <form class="form space-y-4" onSubmit={handleSubmit}>
-                <div>
-                    <label class="label">
-                        <span class="text-base label-text">Username</span>
-                    </label>
-                    <input type="text" placeholder="Username" class="w-full input input-bordered" name="username" value={formvalue.username} onChange={handleChange} />
-                </div>
-                <div>
-                    <label class="label">
-                        <span class="text-base label-text">Email</span>
-                    </label>
-                    <input type="text" placeholder="Email Address" class="w-full input input-bordered" name='email' value={formvalue.email} onChange={handleChange}/>
-                </div>
-                <div>
-                    <label class="label">
-                        <span class="text-base label-text">Password</span>
-                    </label>
-                    <input type="password" placeholder="Enter Password"
-                        class="w-full input input-bordered" name='password' value={formvalue.password} onChange={handleChange}/>
-                </div>
-                <div>
-                    <button class="btn btn-block btn-primary mb-2">Sign Up</button>
-                </div>
-                <span>Already have an account?
-                    <a href="#" class="hover:text-primary hover:underline"> Login</a></span>
-            </form>
-        </div>
+    <div className="hero min-h-screen bg-base-200">
+  <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="text-center lg:text-left">
+      <h1 className="text-5xl font-bold">Sign Up</h1>
+      <p className="py-6">Signing up takes only a few seconds - get started now!</p>
     </div>
+    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div className="card-body">
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Email</span>
+          </label>
+          <input type="text" placeholder="Enter Email" className="input input-bordered" name='email' value={email} onChange={(e)=> setEmail(e.target.value)}/>
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Username</span>
+          </label>
+          <input type="text" placeholder="Enter Username" className="input input-bordered" name='email' value={username} onChange={(e)=> setUsername(e.target.value)}/>
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Password</span>
+          </label>
+          <input type="text" placeholder="Enter Password" className="input input-bordered" name='password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
+          <label className="label">
+            <p>Already have an account? <a href="/login" className="label-text link link-hover hover:text-primary">Login</a></p>
+          </label>
+        </div>
+        <div className="form-control mt-6">
+          <button className="btn btn-primary" >Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   )
 }
