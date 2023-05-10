@@ -3,6 +3,7 @@ import hotel from '../images/hotel5.jpeg';
 import './Hotels.css';
 import { toast } from 'react-hot-toast';
 import { data } from 'autoprefixer';
+import { Link } from 'react-router-dom';
 
 const Hotels = () => {
   const [hotels, setHotels] = useState([])
@@ -137,7 +138,7 @@ useEffect(() => {console.log(hotels)},[hotels])
                 <p className='discount'>{hotel.accentedLabel != false && hotel.accentedLabel}</p>
                 <p className='stars'>{hotel?.bubbleRating?.rating} <i class="fa-sharp fa-solid fa-star"></i> ({hotel?.bubbleRating?.count})</p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary">View</button>
+                <Link to= {`/hotels/${hotel.id}`}><button className="btn btn-primary">View</button></Link>
                 </div>
               </div>
             </div>

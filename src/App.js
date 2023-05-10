@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import ViewHotels from './views/ViewHotels';
 import Login from './views/Login';
 import SignUp from './views/SignUp';
+import Calendar from './views/Calendar';
 
 function App() {
 
@@ -27,9 +28,10 @@ function App() {
           <Route path='/random' exact element={<Random/>}/>
           <Route path='/rentals' exact element={<Rentals/>}/>
           <Route path='/attractions' exact element={<Attractions/>}/>
-          <Route path='/viewhotels' exact element={<ViewHotels/>}/>
+          <Route path='/hotels/:hotelId' exact element={<ViewHotels/>}/>
           <Route path='/signup' exact element = {<SignUp/>}/>
           <Route path='/login' exact element = {<Login/>}/>
+          <Route path='/calendar' exact element = {<Calendar/>}/>
         </Routes>
         <Footer/>
       </Router>
