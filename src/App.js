@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import './App.css';
 import Navbar from './components/Navbar';
@@ -14,16 +14,18 @@ import ViewHotels from './views/ViewHotels';
 import Login from './views/Login';
 import SignUp from './views/SignUp';
 import Calendar from './views/Calendar';
+import { UserProvider } from './context/UserContext';
 
 function App() {
-
   return (
     <>
+    <UserProvider>
       <Router>
         <Navbar/>
         <Routes>
           <Route path='/' exact element={<Home/>}/>
           <Route path='/hotels' exact element={<Hotels/>}/>
+          <Route path='/calendar' exact element = {<Calendar/>}/>
           <Route path='/restaurants' exact element={<Restaurants/>}/>
           <Route path='/random' exact element={<Random/>}/>
           <Route path='/rentals' exact element={<Rentals/>}/>
@@ -31,10 +33,10 @@ function App() {
           <Route path='/hotels/:hotelId' exact element={<ViewHotels/>}/>
           <Route path='/signup' exact element = {<SignUp/>}/>
           <Route path='/login' exact element = {<Login/>}/>
-          <Route path='/calendar' exact element = {<Calendar/>}/>
         </Routes>
         <Footer/>
       </Router>
+      </UserProvider>
     </>
   );
 }

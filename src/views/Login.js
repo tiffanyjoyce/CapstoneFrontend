@@ -1,27 +1,45 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useContext} from 'react'
 import "./Login.css"
-import httpClient from '../httpClient';
+import { useNavigate } from 'react-router-dom';
+import UserContext from '../context/UserContext';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword]= useState('');
+  const [formvalue, setValue] = useState({username:'', password:''});
 
-  const loginUser= async ()=> {
-    console.log(username,password)
+  const {user, setUser} = useContext(UserContext)
 
-  try{
-    const resp = await httpClient.post('//127.0.0.1:5000/login', {
-      username,
-      password,
+  const handleChange = (event) =>{
+    const {name, value} = event.target;
+    setValue({...formvalue, [name]: value});
+    console.log(formvalue)
+  }
+  const handleSubmit = (event) =>{
+    event.preventDefault()
+    loginUser()
+    setValue({username: '', password:""})
+    console.log(formvalue)
+  }
+  const navigate = useNavigate()
+  async function loginUser(){
+    fetch('http://127.0.0.1:5000/login',{
+        method:"POST",
+        body:JSON.stringify({
+            username:formvalue.username,
+            password:formvalue.password,
+        }),
+        headers:{
+            "Content-Type":"application/json",
+            'Access-Control-Allow-Origin':'*',
+        }
+
+    }).then(res => {
+        return res.json()
+    }).then(data => {console.log(data);
+      setUser(data)
+      navigate('/')
     })
-    window.location.href='/';
-  }
-  catch (error){
-    if(error.response.status===401){
-      alert("Invalid credentials");
+    .catch(error => console.log("ERROR"))
     }
-  }
-  }
 
   return (
     <div>
@@ -31,19 +49,19 @@ const Login = () => {
       <h1 className="text-5xl font-bold">Login</h1>
       <p className="py-6">Hello there! Ready to pick up where you left off?</p>
     </div>
-    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+    <form className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100" onSubmit={handleSubmit}>
       <div className="card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Username</span>
           </label>
-          <input type="text" placeholder="Enter Username" className="input input-bordered" name='email' value={username} onChange={(e)=> setUsername(e.target.value)}/>
+          <input type="text" placeholder="Enter Username" className="input input-bordered" name='username' value={formvalue.username} onChange={handleChange}/>
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="text" placeholder="Enter Password" className="input input-bordered" name='password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
+          <input type="text" placeholder="Enter Password" className="input input-bordered" name='password' value={formvalue.password} onChange={handleChange}/>
           <label className="label">
             <p>Don't have an account? <a href="/signup" className="label-text link link-hover hover:text-primary">Sign up</a></p>
           </label>
@@ -52,7 +70,7 @@ const Login = () => {
           <button className="btn btn-primary">Login</button>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
     </div>

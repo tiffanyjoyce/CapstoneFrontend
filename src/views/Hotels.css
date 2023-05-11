@@ -3,7 +3,7 @@
         flex-direction: column!important;
     }
 }
-.container{
+.hotelcontainer{
     width: 100vw;
 }
 .img-container{
@@ -29,26 +29,25 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
+    width: 90vw;
+    margin: 0 auto;
 }
 .hotel-card{
     margin: 40px auto;
-    width: 50%;
+    width: 100vw;
 }
 .reminder{
     text-align: center;
     font-size: 13pt;
 }
 .hotel-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width:90vw;
     margin: 0 auto;
-    align-content: center;
-    gap: 100px;
 }
 .hotel-cards{
-    width: 45%;
 }
 .price{
     text-align: center;
@@ -59,4 +58,17 @@
 }
 .stars{
     text-align: center;
+}
+.search-form{
+    display: flex;
+    flex-direction: row;
+}
+.flexcontainer{
+    display: flex;
+    flex: row;
+    gap: 15px;
+    margin: 0 auto;
+}
+.hotel-imgs{
+    object-fit: cover!important;
 }

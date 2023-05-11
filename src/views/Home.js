@@ -1,13 +1,17 @@
 import './Home.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import hotel from '../images/hotel4.webp'
 import rental from '../images/rental1.jpeg'
 import food from '../images/food2.jpeg'
 import attraction from '../images/attraction3.webp'
 import waterfall from '../images/waterfall2.jpg'
+import UserContext from '../context/UserContext';
+import beach from "../images/beach.jpeg";
+
 
 function Home() {
     const [data, setData] = useState([{}])
+    const {user} = useContext(UserContext)
 
     useEffect (() => {
       fetch("/location/api").then(
@@ -21,7 +25,7 @@ function Home() {
     }, [])
     return (
 
-        <div className='container'>
+        <div className='home-container'>
         <div className='imgContainer mt-10'>
             <img className = "homeImg" src={waterfall} />
             </div>
@@ -54,8 +58,8 @@ function Home() {
   </div>
   </div>
   <div className="Restaurants card w-50 bg-base-100 shadow-xl">
-  <figure className='img'><img src={food} alt="Shoes" /></figure>
-  <div className="card-body">
+  <figure className='beach-img img'><img src={food} alt="Shoes" /></figure>
+  <div className="joinus-body card-body">
     <h2 className="card-title">Restaurants</h2>
     <div className="card-actions justify-start">
     <a href='/restaurants'><button className="btn btn-primary">Explore</button></a>
@@ -72,7 +76,21 @@ function Home() {
   </div>
 </div>
 </div>
-            <h1>{JSON.stringify(data.data)}</h1>
+<div>
+          {!user.id &&
+         <div className="bottom-card card lg:card-side bg-base-100 shadow-xl">
+         <figure><img src={beach} alt="Album"/></figure>
+         <div className="card-body">
+           <h2 className="joinus card-title">Join us</h2>
+           <p>Sign up to gain access to features such as the itinerary and favorites to enhance your travel experience.</p>
+           <div className="card-actions justify-end">
+             <a href='/signup'><button className="btn btn-primary">Sign up</button></a>
+             <p className='signin-text text-sm'>Already have an account? <a className='link link-hover' href='/login'>Login</a></p>
+           </div>
+         </div>
+       </div>
+          }
+        </div>
         </div>
     )
 

@@ -1,6 +1,5 @@
 import React, {useState, UseState} from 'react'
 import "./SignUp.css"
-import httpClient from '../httpClient';
 import { json, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
@@ -34,13 +33,15 @@ const SignUp = () => {
 
     }).then(res => {
         return res.json()
-    }).then(data => navigate('/')
+    }).then(data => {console.log(data);
+    navigate('/login')
+    }
     )
     .catch(error => console.log("ERROR"))
     }
 
   return (
-    <div className='container bg-img'>
+    <div className='bg-img container'>
     <div className="hero min-h-screen bg-base-200">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
@@ -53,19 +54,19 @@ const SignUp = () => {
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="text" placeholder="Enter Email" className="input input-bordered" name='email' value={formvalue.email} onChange={handleChange}/>
+          <input type="text" placeholder="Enter Email" className="input input-bordered" name='email' value={formvalue.email} onChange={handleChange} required/>
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Username</span>
           </label>
-          <input type="text" placeholder="Enter Username" className="input input-bordered" name='username' value={formvalue.username} onChange={handleChange}/>
+          <input type="text" placeholder="Enter Username" className="input input-bordered" name='username' value={formvalue.username} onChange={handleChange} required/>
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="text" placeholder="Enter Password" className="input input-bordered" name='password' value={formvalue.password} onChange={handleChange}/>
+          <input type="password" placeholder="Enter Password" className="input input-bordered" name='password' value={formvalue.password} onChange={handleChange} required/>
           <label className="label">
             <p>Already have an account? <a href="/login" className="label-text link link-hover hover:text-primary">Login</a></p>
           </label>

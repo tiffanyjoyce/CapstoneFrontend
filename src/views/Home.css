@@ -5,7 +5,7 @@
     }
     
 }
-.container{
+.home-container{
     max-width: 100vw;
     min-width: 100vw;
 }
@@ -139,4 +139,14 @@
 .smooth{
   scroll-behavior:smooth;
 
+}
+.bottom-card{
+  width: 90vw;
+  margin: 100px auto;
+}
+.signin-text{
+  text-align: right;
+}
+.joinus{
+  text-align: center !important;
 }

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import restaurant from "../images/restaurant.jpeg"
 import "./Restaurants.css"
+import { Link } from 'react-router-dom'
 
 const Restaurants = () => {
   const [restaurants, setRestaurants] = useState([])
@@ -35,7 +36,7 @@ const Restaurants = () => {
     }
 
   return (
-    <div className='container'>
+    <div className='r-container'>
       <div className='img-container'>
         <img className='restaurant-img'src={restaurant}/>
         <h1 className='title'>Restaurants</h1>
@@ -66,8 +67,18 @@ const Restaurants = () => {
     <p className='price'>{restaurant.priceTag}</p>
     <p className='status'>{restaurant.currentOpenStatusText}</p>
     <div className="card-actions justify-end">
-      <button className="btn btn-primary">View</button>
-    </div>
+                  <div className='flexcontainer'>
+                    <div className='item1'>
+                <Link to= {`/`}><button className="btn btn-primary">View</button></Link>
+                </div>
+                <div className='item2'>
+                <Link><button className='btn btn-primary'>Add to Itinerary</button></Link>
+                </div>
+                <div className='item3'>
+                <Link><i class="fa-regular fa-heart"></i></Link>
+                </div>
+                </div>
+                </div>
   </div>
 </div>
           )
