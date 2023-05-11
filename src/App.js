@@ -30,7 +30,7 @@ function App() {
           <Route path='/random' exact element={<Random/>}/>
           <Route path='/rentals' exact element={<Rentals/>}/>
           <Route path='/attractions' exact element={<Attractions/>}/>
-          <Route path='/hotels/:hotelId' exact element={<ViewHotels/>}/>
+          <Route path='/hotels/:hotelId/:indate/:outdate' exact element={<ViewHotels/>}/>
           <Route path='/signup' exact element = {<SignUp/>}/>
           <Route path='/login' exact element = {<Login/>}/>
         </Routes>

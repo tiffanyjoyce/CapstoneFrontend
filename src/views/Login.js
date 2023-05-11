@@ -6,7 +6,7 @@ import UserContext from '../context/UserContext';
 const Login = () => {
   const [formvalue, setValue] = useState({username:'', password:''});
 
-  const {user, setUser} = useContext(UserContext)
+  const {setUser} = useContext(UserContext);
 
   const handleChange = (event) =>{
     const {name, value} = event.target;
@@ -40,6 +40,7 @@ const Login = () => {
     })
     .catch(error => console.log("ERROR"))
     }
+
 
   return (
     <div>

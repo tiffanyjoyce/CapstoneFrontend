@@ -5,7 +5,7 @@ import UserContext from '../context/UserContext';
 import { NavLink } from 'react-router-dom';
 
 function Navbar(){
-  const {user, setUser} = useContext(UserContext)
+  const {user} = useContext(UserContext)
 return(
 
     <nav>
@@ -14,6 +14,11 @@ return(
     <a className="btn btn-ghost normal-case text-xl" href='/'>Tranquil Travel</a>
   </div>
   <div className="flex-none">
+    {!user.id &&
+    <>
+    <NavLink to='/login' className="mr-5">Login</NavLink>
+    <NavLink to='/signup' className="mr-5">Sign up</NavLink>
+    </>}
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle">
         <div className="indicator">
@@ -29,7 +34,8 @@ return(
           </div>
         </div>
       </div> */}
-    </div>
+    </div> 
+    {user.id &&
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
@@ -42,10 +48,11 @@ return(
             Profile
           </a>
         </li>
-        <li><a href='/'>Settings</a></li>
-        <li><a href='/' onClick={setUser({})}>Logout</a></li>
+        <li><a href='/'>Favorites</a></li>
+        <li><a href='/'>Logout</a></li>
       </ul>
     </div>
+}
   </div>
 </div>
     </nav>

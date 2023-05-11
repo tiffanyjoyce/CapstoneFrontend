@@ -43,11 +43,8 @@ const Restaurants = () => {
       </div>
       <div className="r-card card w-96 bg-base-100 shadow-xl">
   <div className="card-body">
-    <h2 className="card-title text-center">Search Restaurants by Location</h2>
+    <h2 className="card-title text-center">Search Restaurants by City</h2>
     <form className="form-control w-full max-w-xs" onSubmit={handleSubmit}>
-  <label className="label">
-    <span className="label-text">City</span>
-  </label>
   <input type="text" placeholder="Where to?" className="input input-bordered w-full max-w-xs" name='location' value={formvalue} onChange={handleChange}/>
     <div className="card-actions justify-end mt-3">
       <button className="btn btn-primary">Search</button>

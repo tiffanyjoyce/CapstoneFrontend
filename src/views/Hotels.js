@@ -9,6 +9,8 @@ import UserContext from '../context/UserContext';
 const Hotels = () => {
   const [hotels, setHotels] = useState([])
   const [formvalue, setValue] = useState({location:'', checkin:'', checkout:''});
+  const [indate, setIndate] = useState('')
+  const [outdate, setOutdate] = useState('')
   // const {loc, setLoc} = useContext(TripContext)
   // const {indate, setIndate} = useContext(UserContext)
   // const {outdate, setOutdate} = useContext(UserContext)
@@ -20,8 +22,8 @@ const Hotels = () => {
   }
   const handleSubmit=(event)=>{
     event.preventDefault();
-    // setIndate(formvalue.checkin)
-    // setOutdate(formvalue.checkout)
+    setIndate(formvalue.checkin)
+    setOutdate(formvalue.checkout)
     findLocation()
     // setLoc(formvalue.location)
     setValue({location:'', checkin:'', checkout:''})
@@ -133,7 +135,7 @@ useEffect(() => {console.log(hotels)},[hotels])
                 <div className="card-actions justify-end">
                   <div className='flexcontainer'>
                     <div className='item1'>
-                <Link to= {`/hotels/${hotel.id}`}><button className="btn btn-primary">View</button></Link>
+                <Link to= {`/hotels/${hotel.id}/${indate}/${outdate}`}><button className="btn btn-primary">View</button></Link>
                 </div>
                 <div className='item2'>
                 <Link><button className='btn btn-primary'>Add to Itinerary</button></Link>
