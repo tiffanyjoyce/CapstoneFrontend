@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react'
+import "./Rentals.css"
+import rental from "../images/vacrental.jpeg"
 
 const Rentals = () => {
   const [rentals, setRentals] = useState([])
@@ -35,58 +37,38 @@ const Rentals = () => {
     .catch(error => console.log("ERROR"))
   }
   return (
-    <div>
+    <div className="thecontainer">
       <div className='img-container'>
-        <img src= '/'></img>
+        <img className='rental-img' src= {rental}></img>
       </div>
-      <h1 className='hotels-text'>Rentals</h1>
-      <div className="hotel-card card w-96 bg-primary text-primary-content">
+      <h1 className='rentals-text'>Rentals</h1>
+      <div className="thecard card w-96 bg-transparent text-primary-content">
   <div className="card-body">
-    <h2 className="card-title">Search Rentals By Location</h2>
+    <h2 className="card-title text-primary">Search Rentals By Location</h2>
       <form className="form form-control w-full max-w-xs" onSubmit={handleSubmit}>
-  <label className="label">
-    <span className="label-text">Where do you want to go?</span>
-  </label>
-  <input type="text" placeholder="Where to?" className="location input input-bordered w-full max-w-xs text-black" name="location" value={formvalue.location} onChange={handleChange}/>
 <div className='flex-container'>
+  <input type="text" placeholder="Where to?" className="location input input-bordered w-full max-w-xs text-black" name="location" value={formvalue.location} onChange={handleChange}/>
 <div className="form-control w-full max-w-xs">
-  {/* <label className="label">
-    <span className="label-text">What is your name?</span>
-    <span className="label-text-alt">Top Right label</span>
-  </label> */}
   <input type="text" placeholder="Check-in" className="start-date input input-bordered w-full max-w-xs text-black" name = 'checkin' value = {formvalue.checkin} onChange={handleChange} />
-  <label className="label">
-    <span className="label-text-alt">Check-in Date</span>
-    {/* <span className="label-text-alt">Bottom Right label</span> */}
-  </label>
 </div>
 <div className="form-control w-full max-w-xs">
-  {/* <label className="label">
-    <span className="label-text">What is your name?</span>
-    <span className="label-text-alt">Top Right label</span>
-  </label> */}
   <input type="text" placeholder="Check-out" className="end-date input input-bordered w-full max-w-xs text-black" name='checkout' value = {formvalue.checkout} onChange= {handleChange} />
-  <label className="label">
-    {/* <span className="label-text-alt">Bottom Left label</span> */}
-    <span className="label-text-alt">Check-out Date</span>
-  </label>
-</div>
 </div>
     <div className="card-actions justify-end">
-      <button className="btn btn-secondary text-primary">Search</button>
+      <button className="btn btn-primary text-secondary">Search</button>
     </div>
+</div>
     </form>
     </div>
     </div>
-    <div>{rentals && rentals.map((rental)=>{
+    <div className='rental-cards'>{rentals && rentals.map((rental)=>{
       return(
         <div key= {rental.id} className="card w-96 bg-base-100 shadow-xl">
-  <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title">{rental.name}</h2>
-    <p>Starting at ${rental.rate.details[0].rate.amount}</p>
-    <p>{rental.rental.averageRatingNumber} <i class="fa-sharp fa-solid fa-star"></i> ({rental.rental.userReviewCount})</p>
-    <p>{rental.rental.roomCount} Bed | {rental.rental.bathCount} Bath | Sleeps {rental.rental.sleepCount}</p>
+    <p>Starting at ${rental?.rate?.details[0].rate.amount}</p>
+    <p>{rental?.rental?.averageRatingNumber} <i class="fa-sharp fa-solid fa-star"></i> ({rental.rental.userReviewCount})</p>
+    <p>{rental?.rental?.roomCount} Bed | {rental.rental.bathCount} Bath | Sleeps {rental.rental.sleepCount}</p>
     <div className="card-actions justify-end">
       <button className="btn btn-primary">View</button>
     </div>

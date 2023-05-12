@@ -1,0 +1,27 @@
+.rental-cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    width: 90vw;
+    gap: 10px;
+}
+.thecard{
+
+}
+.rental-img{
+    border-radius: 2rem;
+    width: 90vw;
+}
+.img-container{
+    position: relative;
+}
+.rentals-text{
+    font-size: 50pt;
+    color: white;
+    position: absolute;
+    left: 75%;
+    bottom: 5%;
+}
+.thecontainer{
+    width: 100vw;
+}

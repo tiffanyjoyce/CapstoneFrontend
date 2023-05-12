@@ -86,10 +86,10 @@ const ViewHotels = () => {
          <figure><img src={a?.cardPhoto?.urlTemplate?.split('?')[0]+'?w=600&h=300&s=1'} alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title">{a.title}</h2>
-    <p>{a.distance} from hotel</p>
+    <p>{a.distance}</p>
     <p>{a?.bubbleRating?.rating} <i class="fa-sharp fa-solid fa-star"></i></p>
     <div className="card-actions justify-end">
-      <button className="btn btn-primary">Add to Itinerary</button>
+      <button className="btn btn-primary">View</button>
     </div>
   </div>
       </div>

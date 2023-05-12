@@ -22,7 +22,7 @@ return(
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle">
         <div className="indicator">
-          <NavLink to={user.id ? '/calendar' : '/login'}><i class="calendar fa-solid fa-calendar-days fa-2xl"></i></NavLink>
+          <NavLink to='/calendar'><i class="calendar fa-solid fa-calendar-days fa-2xl"></i></NavLink>
         </div>
       </label>
       {/* <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
