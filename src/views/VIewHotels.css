@@ -25,3 +25,11 @@
     gap: 10px;
     width: 90vw;
 }
+.restaurants{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-around;
+    margin: 20px auto;
+    gap: 10px;
+    width: 90vw;
+}
