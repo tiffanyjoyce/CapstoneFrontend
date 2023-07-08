@@ -69,11 +69,14 @@ const ViewHotels = () => {
           <h2 className="card-title">{hotel.title}</h2>
           <p>{hotel?.location?.address}</p>
           <p className='amentities'>Amentities include:</p>
-          <ul>
+          <details className='dropdown dropdown-bottom mb-32'>
+            <summary className="m-1 btn">Amentities</summary>
+          <ul className="p-2 shadown menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
             {hotel?.amenitiesScreen?.map(amenity => (
               <li>{amenity?.content[0]}</li>
             ))}
           </ul>
+          </details>
           {/* <p>{hotel?.amenitiesScreen?.[0].content[0]}</p>
     <p>{hotel?.amenitiesScreen?.[1].content[0]}</p>
     <p>{hotel?.amenitiesScreen?.[2].content[0]}</p>

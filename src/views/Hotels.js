@@ -110,10 +110,10 @@ useEffect(() => {console.log(hotels)},[hotels])
 </div>
 <div className="form-control w-full max-w-xs">
   {/* <DatePicker></DatePicker> */}
-  <input type="text" placeholder="Check-in" className="start-date input input-bordered w-full max-w-xs text-black" name = 'checkin' value = {formvalue.checkin} onChange={handleChange} />
+  <input type="text" placeholder="Check-in (YYYY-MM-DD)" className="start-date input input-bordered w-full max-w-xs text-black" name = 'checkin' value = {formvalue.checkin} onChange={handleChange} />
 </div>
 <div className="form-control w-full max-w-xs">
-  <input type="text" placeholder="Check-out" className="end-date input input-bordered w-full max-w-xs text-black" name='checkout' value = {formvalue.checkout} onChange= {handleChange} />
+  <input type="text" placeholder="Check-out (YYYY-MM-DD)" className="end-date input input-bordered w-full max-w-xs text-black" name='checkout' value = {formvalue.checkout} onChange= {handleChange} />
 </div>
     <div className="card-actions">
       <button className="btn btn-primary text-secondary">Search</button>
